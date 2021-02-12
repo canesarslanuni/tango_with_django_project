@@ -34,6 +34,7 @@ def index(request):
 	context_dict = {}
 	context_dict['boldmessage'] = 'Crunchy, creamy, cookie, candy, cupcake!'
 	context_dict['categories'] = category_list
+	request.session.set_test_cookie()
 	return render(request, 'rango/index.html', context=context_dict)
 
 def show_category(request, category_name_slug):
@@ -49,6 +50,9 @@ def show_category(request, category_name_slug):
 	return render(request, 'rango/category.html', context=context_dict)
 
 def about(request):
+	if request.session.test_cookie_worked():
+		print("TEST COOKIE WORKED!")
+		request.session.delete_test_cookie()
 	return render(request, 'rango/about.html')
 
 def add_category(request):
