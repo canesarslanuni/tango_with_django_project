@@ -105,7 +105,8 @@ AUTH_PASSWORD_VALIDATORS = [
     },
     {
         'NAME': 'django.contrib.auth.password_validation.NumericPasswordValidator',
-    },
+# The line below is to ensure accepted passwords are at least six characters long
+    },{'NAME': 'django.contrib.auth.password_validation.MinimumLengthValidator','OPTIONS': { 'min_length': 6, }},
 ]
 
 
