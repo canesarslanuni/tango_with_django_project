@@ -34,6 +34,7 @@ class Page(models.Model):
 	def __unicode__(self):
 		return self.title
 
+# The class UserProfile allows us to create attributes about the users. Where in this case it is URLField and ImageField
 class UserProfile(models.Model):
 	user = models.OneToOneField(User, on_delete=models.CASCADE)
 	website = models.URLField(blank=True)

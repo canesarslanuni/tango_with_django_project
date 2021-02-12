@@ -1,6 +1,10 @@
 from django import forms
 from rango.models import Page, Category
 
+from django.contrib.auth.models import User
+from rango.models import UserProfile
+
+
 #This is a helper class that allows us to create a Django Form from a pre-existing model
 
 class CategoryForm(forms.ModelForm):
@@ -35,3 +39,14 @@ class PageForm(forms.ModelForm):
 			url = f'http://{url}'
 			cleaned_data['url'] = url
 		return cleaned_data
+
+# With the classes below we show that the fields username, email and password is associated with user model and the wesite and picture fields associated with the UserProgile model
+class UserForm(forms.ModelForm):
+	password = forms.CharField(widget=forms.PasswordInput())
+	class Meta:
+		model = User
+		fields = ('username', 'email', 'password',)
+class UserProfileForm(forms.ModelForm):
+	class Meta:
+        	model = UserProfile
+        	fields = ('website', 'picture',)
